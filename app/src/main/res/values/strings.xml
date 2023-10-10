@@ -5,4 +5,5 @@
     <string name="publish_date">Publish Date</string>
     <string name="news_title">News Title</string>
     <string name="author">Author</string>
+    <string name="latest_news">Latest News</string>
 </resources>
