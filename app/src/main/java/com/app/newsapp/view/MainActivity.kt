@@ -1,10 +1,11 @@
-package com.app.newsapp
+package com.app.newsapp.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.app.newsapp.R
 import com.app.newsapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
