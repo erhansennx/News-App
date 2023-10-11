@@ -49,10 +49,20 @@ android {
 dependencies {
 
     val nav_version = "2.7.4"
+    val retrofit_version = "2.9.0"
+    val rxjava_version = "3.1.8"
+
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-    implementation ("com.github.bumptech.glide:glide:4.16.0") // Glide Lib
+    implementation("com.github.bumptech.glide:glide:4.16.0") // Glide Lib
+
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
+    implementation("com.squareup.retrofit2:adapter-rxjava2:$retrofit_version")
+
+    implementation("io.reactivex.rxjava3:rxjava:$rxjava_version")
+    implementation("io.reactivex.rxjava3:rxandroid:$rxjava_version")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
