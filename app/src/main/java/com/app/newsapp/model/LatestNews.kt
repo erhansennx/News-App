@@ -1,3 +1,13 @@
 package com.app.newsapp.model
 
-data class LatestNews(val author: String, val title: String, val publishedAt: String, val image: String)
+
+import com.google.gson.annotations.SerializedName
+
+data class LatestNews(
+    @SerializedName("articles")
+    val articles: List<Article>,
+    @SerializedName("status")
+    val status: String,
+    @SerializedName("totalResults")
+    val totalResults: Int
+)
