@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/author"
                 android:textSize="14sp"
+                android:fontFamily="@font/robotoregular"
                 android:text="@{article.author}"/>
 
             <TextView
@@ -42,6 +43,7 @@
                 android:hint="@string/news_title"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:fontFamily="@font/robotomedium"
                 android:text="@{article.title}"
                 android:maxLines="2"
                 android:ellipsize="end"
@@ -54,6 +56,7 @@
                 android:layout_marginTop="5dp"
                 android:hint="@string/publish_date"
                 android:textSize="14sp"
+                android:fontFamily="@font/robotoregular"
                 android:formatDate="@{article.publishedAt}"/>
 
         </LinearLayout>
@@ -67,6 +70,7 @@
                 android:id="@+id/newsImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/gray"
                 android:downloadImage="@{article.urlToImage}"/>
 
         </androidx.cardview.widget.CardView>

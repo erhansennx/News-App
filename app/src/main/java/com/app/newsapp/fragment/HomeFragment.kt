@@ -41,6 +41,8 @@ class HomeFragment : Fragment() {
     private fun observeLatestNews() {
         val observer = Observer<LatestNews?> { news ->
             if (news != null) {
+                fragmentHomeBinding.homeProgress.visibility = View.GONE
+                fragmentHomeBinding.homeLinear.visibility = View.VISIBLE
                 articles = news.articles.filter { it.urlToImage != null }
                 articles.forEach { article -> if (article.author == null) article.author = "Unknown" }
                 addImageSlider(articles)
