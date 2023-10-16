@@ -6,4 +6,5 @@
     <string name="news_title">News Title</string>
     <string name="author">Author</string>
     <string name="latest_news">Latest News</string>
+    <string name="breaking_news">Breaking News</string>
 </resources>

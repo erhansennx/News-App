@@ -41,7 +41,8 @@ class HomeFragment : Fragment() {
     private fun observeLatestNews() {
         val observer = Observer<LatestNews?> { news ->
             if (news != null) {
-                articles = news.articles
+                articles = news.articles.filter { it.urlToImage != null }
+                articles.forEach { article -> if (article.author == null) article.author = "Unknown" }
                 addImageSlider(articles)
                 latestNewsAdapter = LatestNewsAdapter(articles)
                 fragmentHomeBinding.latestNewsRecycler.adapter = latestNewsAdapter
@@ -51,7 +52,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun addImageSlider(articles: List<Article>) {
-        for (index in 0 until 8) {
+        imageList.clear()
+        for (index in 0 until 7) {
             imageList.add(SlideModel(articles[index].urlToImage, articles[index].title))
         }
         fragmentHomeBinding.imageSlider.setImageList(imageList, ScaleTypes.FIT)

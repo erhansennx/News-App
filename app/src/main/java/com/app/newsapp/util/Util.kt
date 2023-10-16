@@ -13,7 +13,7 @@ fun ImageView.downloadImage(url: String?) {
         .load(url)
         .centerCrop()
         .placeholder(R.drawable.progress_animation)
-        .error(R.drawable.ic_launcher_background)
+        .error(R.drawable.breaking_news)
         .into(this)
 
 }
