@@ -53,7 +53,7 @@
                 android:layout_marginTop="5dp"
                 android:hint="@string/publish_date"
                 android:textSize="14sp"
-                android:text="@{article.publishedAt}"/>
+                android:formatDate="@{article.publishedAt}"/>
 
         </LinearLayout>
 
