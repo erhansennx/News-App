@@ -30,8 +30,6 @@ class HomeFragment : Fragment() {
         fragmentHomeBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
         latestNewsViewModel = ViewModelProvider(this)[LatestNewsViewModel::class.java]
-        // articles = ArrayList()
-
         latestNewsViewModel.getData()
         observeLatestNews()
 
@@ -45,11 +43,9 @@ class HomeFragment : Fragment() {
                 articles = news.articles
                 latestNewsAdapter = LatestNewsAdapter(articles)
                 fragmentHomeBinding.latestNewsRecycler.adapter = latestNewsAdapter
-                // latestNewsAdapter.notifyDataSetChanged()
             }
         }
         latestNewsViewModel.latestNews.observe(viewLifecycleOwner, observer)
-
     }
 
 }
