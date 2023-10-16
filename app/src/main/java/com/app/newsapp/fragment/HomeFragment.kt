@@ -7,21 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.app.newsapp.R
 import com.app.newsapp.adapter.LatestNewsAdapter
 import com.app.newsapp.databinding.FragmentHomeBinding
 import com.app.newsapp.model.Article
 import com.app.newsapp.model.LatestNews
 import com.app.newsapp.viewmodel.LatestNewsViewModel
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 
 
 class HomeFragment : Fragment() {
 
     private var articles: List<Article> = arrayListOf()
+    private var imageList: ArrayList<SlideModel> = arrayListOf()
     private lateinit var latestNewsAdapter: LatestNewsAdapter
     private lateinit var fragmentHomeBinding: FragmentHomeBinding
     private lateinit var latestNewsViewModel: LatestNewsViewModel
@@ -41,11 +42,20 @@ class HomeFragment : Fragment() {
         val observer = Observer<LatestNews?> { news ->
             if (news != null) {
                 articles = news.articles
+                addImageSlider(articles)
                 latestNewsAdapter = LatestNewsAdapter(articles)
                 fragmentHomeBinding.latestNewsRecycler.adapter = latestNewsAdapter
             }
         }
         latestNewsViewModel.latestNews.observe(viewLifecycleOwner, observer)
     }
+
+    private fun addImageSlider(articles: List<Article>) {
+        for (index in 0 until 8) {
+            imageList.add(SlideModel(articles[index].urlToImage, articles[index].title))
+        }
+        fragmentHomeBinding.imageSlider.setImageList(imageList, ScaleTypes.FIT)
+    }
+
 
 }
