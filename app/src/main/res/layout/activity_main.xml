@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         style="@style/Widget.Design.BottomNavigationView"
+        android:background="@color/transparent"
         app:menu="@menu/bottom_navigation"/>
 
 

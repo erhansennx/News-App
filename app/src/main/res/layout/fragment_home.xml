@@ -23,6 +23,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:orientation="vertical"
+            android:visibility="gone"
             tools:context=".fragment.HomeFragment">
 
             <TextView
