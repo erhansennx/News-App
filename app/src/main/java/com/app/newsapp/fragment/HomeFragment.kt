@@ -44,7 +44,6 @@ class HomeFragment : Fragment() {
                 fragmentHomeBinding.homeProgress.visibility = View.GONE
                 fragmentHomeBinding.homeLinear.visibility = View.VISIBLE
                 articles = news.articles.filter { it.urlToImage != null }
-                articles.forEach { article -> if (article.author == null) article.author = "Unknown" }
                 addImageSlider(articles)
                 latestNewsAdapter = LatestNewsAdapter(articles)
                 fragmentHomeBinding.latestNewsRecycler.adapter = latestNewsAdapter

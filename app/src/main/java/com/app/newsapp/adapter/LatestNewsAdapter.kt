@@ -1,11 +1,14 @@
 package com.app.newsapp.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.app.newsapp.R
 import com.app.newsapp.databinding.ItemNewsBinding
+import com.app.newsapp.fragment.HomeFragmentDirections
 import com.app.newsapp.model.Article
 
 class LatestNewsAdapter(private val articles: List<Article>) : RecyclerView.Adapter<LatestNewsAdapter.ItemHolder>() {
@@ -24,6 +27,10 @@ class LatestNewsAdapter(private val articles: List<Article>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.binding.article = articles[position]
+        holder.binding.newsLinear.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(articles[position])
+            Navigation.findNavController(it).navigate(action)
+        }
     }
 
 

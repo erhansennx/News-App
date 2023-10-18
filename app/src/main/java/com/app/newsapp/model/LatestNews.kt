@@ -7,7 +7,7 @@ data class LatestNews(
     @SerializedName("articles")
     val articles: List<Article>,
     @SerializedName("status")
-    val status: String,
+    val status: String?,
     @SerializedName("totalResults")
-    val totalResults: Int
+    val totalResults: Int?
 )

@@ -31,6 +31,10 @@
         android:id="@+id/detailsFragment"
         android:name="com.app.newsapp.fragment.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="selectedArticle"
+            app:argType="com.app.newsapp.model.Article"/>
+    </fragment>
 
 </navigation>

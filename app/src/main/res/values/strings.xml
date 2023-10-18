@@ -7,4 +7,6 @@
     <string name="author">Author</string>
     <string name="latest_news">Latest News</string>
     <string name="breaking_news">Breaking News</string>
+    <string name="content">Content</string>
+    <string name="world">• World</string>
 </resources>

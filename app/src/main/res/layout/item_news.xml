@@ -11,6 +11,7 @@
 
 
     <LinearLayout
+        android:id="@+id/newsLinear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -30,7 +31,7 @@
                 android:hint="@string/author"
                 android:textSize="14sp"
                 android:fontFamily="@font/robotoregular"
-                android:text="@{article.author}"/>
+                android:text="@{article.author ?? `Unknown`}"/>
 
             <TextView
                 android:id="@+id/newsTitle"
@@ -44,7 +45,7 @@
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:fontFamily="@font/robotomedium"
-                android:text="@{article.title}"
+                android:text="@{article.title ?? `Title not found`}"
                 android:maxLines="2"
                 android:ellipsize="end"
                 tools:ignore="NestedWeights" />
@@ -57,7 +58,7 @@
                 android:hint="@string/publish_date"
                 android:textSize="14sp"
                 android:fontFamily="@font/robotoregular"
-                android:formatDate="@{article.publishedAt}"/>
+                android:formatDate="@{article.publishedAt ?? `Date not found`}"/>
 
         </LinearLayout>
 
