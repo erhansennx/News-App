@@ -14,7 +14,7 @@ import com.app.newsapp.R
 import com.app.newsapp.adapter.LatestNewsAdapter
 import com.app.newsapp.databinding.FragmentHomeBinding
 import com.app.newsapp.model.Article
-import com.app.newsapp.model.LatestNews
+import com.app.newsapp.model.NewsModel
 import com.app.newsapp.viewmodel.LatestNewsViewModel
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
@@ -41,17 +41,20 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun observeLatestNews() {
-        val observer = Observer<LatestNews?> { news ->
+        val observer = Observer<NewsModel?> { news ->
             if (news != null) {
                 fragmentHomeBinding.homeProgress.visibility = View.GONE
                 fragmentHomeBinding.homeLinear.visibility = View.VISIBLE
                 articles = news.articles.filter { it.urlToImage != null }
                 implementImageSlider(articles)
-                latestNewsAdapter = LatestNewsAdapter(articles)
+                latestNewsAdapter = LatestNewsAdapter(articles, onItemClick = { article ->
+                    val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(article)
+                    Navigation.findNavController(requireView()).navigate(action)
+                })
                 fragmentHomeBinding.latestNewsRecycler.adapter = latestNewsAdapter
             }
         }
-        latestNewsViewModel.latestNews.observe(viewLifecycleOwner, observer)
+        latestNewsViewModel.newsModel.observe(viewLifecycleOwner, observer)
     }
 
     private fun implementImageSlider(articles: List<Article>) {

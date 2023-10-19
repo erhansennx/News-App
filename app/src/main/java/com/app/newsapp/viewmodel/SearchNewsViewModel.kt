@@ -9,18 +9,18 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-class LatestNewsViewModel : ViewModel() {
+class SearchNewsViewModel : ViewModel() {
 
     private val newsApiService = NewsService()
     private val disposable = CompositeDisposable()
     val newsModel = MutableLiveData<NewsModel?>()
 
-    fun getData() {
+    fun getAllNews() {
         disposable.add(
-            newsApiService.getLatestNews()
+            newsApiService.getAllNews()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object : DisposableSingleObserver<NewsModel>(){
+                .subscribeWith(object : DisposableSingleObserver<NewsModel>() {
                     override fun onSuccess(t: NewsModel) {
                         newsModel.value = t
                     }
@@ -28,9 +28,9 @@ class LatestNewsViewModel : ViewModel() {
                     override fun onError(e: Throwable) {
                         newsModel.value = null
                     }
-
                 })
         )
     }
+
 
 }

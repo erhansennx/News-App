@@ -1,7 +1,6 @@
 package com.app.newsapp.service
 
-import com.app.newsapp.model.LatestNews
-import com.google.gson.Gson
+import com.app.newsapp.model.NewsModel
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -18,8 +17,12 @@ class NewsService {
         .build()
         .create(NewsAPI::class.java)
 
-    fun getLatestNews(): Single<LatestNews> {
+    fun getLatestNews(): Single<NewsModel> {
         return api.getTopHeadlinesNews()
+    }
+
+    fun getAllNews(): Single<NewsModel> {
+        return api.getAllNews()
     }
 
 }

@@ -9,4 +9,5 @@
     <string name="breaking_news">Breaking News</string>
     <string name="content">Content</string>
     <string name="world">• World</string>
+    <string name="searchbar_hint">Search News</string>
 </resources>

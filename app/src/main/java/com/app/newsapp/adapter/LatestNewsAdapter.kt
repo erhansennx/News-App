@@ -11,7 +11,7 @@ import com.app.newsapp.databinding.ItemNewsBinding
 import com.app.newsapp.fragment.HomeFragmentDirections
 import com.app.newsapp.model.Article
 
-class LatestNewsAdapter(private val articles: List<Article>) : RecyclerView.Adapter<LatestNewsAdapter.ItemHolder>() {
+class LatestNewsAdapter(private val articles: List<Article>, private val onItemClick: (Article) -> Unit) : RecyclerView.Adapter<LatestNewsAdapter.ItemHolder>() {
 
     class ItemHolder(var binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -28,8 +28,7 @@ class LatestNewsAdapter(private val articles: List<Article>) : RecyclerView.Adap
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.binding.article = articles[position]
         holder.binding.newsLinear.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(articles[position])
-            Navigation.findNavController(it).navigate(action)
+            onItemClick(articles[position])
         }
     }
 
