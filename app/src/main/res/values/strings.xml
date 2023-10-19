@@ -10,4 +10,5 @@
     <string name="content">Content</string>
     <string name="world">• World</string>
     <string name="searchbar_hint">Search News</string>
+    <string name="international_news">International News</string>
 </resources>

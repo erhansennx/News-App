@@ -40,6 +40,8 @@ class SearchFragment : Fragment() {
     private fun observeAllNews() {
         val observer = Observer<NewsModel?> { news ->
             if (news != null) {
+                fragmentSearchBinding.searchProgress.visibility = View.GONE
+                fragmentSearchBinding.searchLinear.visibility = View.VISIBLE
                 articles = news.articles.filter { it.urlToImage != null }
                 latestNewsAdapter = LatestNewsAdapter(articles, onItemClick = { article ->
                     val action = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(article)

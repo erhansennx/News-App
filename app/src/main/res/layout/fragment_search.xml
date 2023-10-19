@@ -3,30 +3,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".fragment.SearchFragment">
+        android:layout_height="match_parent">
 
-        <TextView
+        <ProgressBar
+            android:id="@+id/searchProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/robotomedium"
-            android:text="Everything News"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/breaking_red" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/searchRecycler"
+        <LinearLayout
+            android:id="@+id/searchLinear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:context=".fragment.SearchFragment">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/robotobold"
+                android:text="@string/international_news"
+                android:textColor="@color/black"
+                android:textSize="28sp" />
+
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/searchview_background"
+                android:paddingStart="5dp"
+                app:defaultQueryHint="Search.."
+                app:queryBackground="@null"
+                app:queryHint="Search.."
+                tools:ignore="RtlSymmetry" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/searchRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="15dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </LinearLayout>
+    </FrameLayout>
 </layout>
