@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,7 +17,6 @@ import com.app.newsapp.adapter.LatestNewsAdapter
 import com.app.newsapp.databinding.FragmentSearchBinding
 import com.app.newsapp.model.Article
 import com.app.newsapp.model.NewsModel
-import com.app.newsapp.viewmodel.LatestNewsViewModel
 import com.app.newsapp.viewmodel.SearchNewsViewModel
 
 
@@ -32,7 +33,7 @@ class SearchFragment : Fragment() {
         searchNewsViewModel = ViewModelProvider(this)[SearchNewsViewModel::class.java]
         searchNewsViewModel.getAllNews()
         observeAllNews()
-
+        searchNews()
         return fragmentSearchBinding.root
     }
 
@@ -48,9 +49,29 @@ class SearchFragment : Fragment() {
                     Navigation.findNavController(requireView()).navigate(action)
                 })
                 fragmentSearchBinding.searchRecycler.adapter = latestNewsAdapter
+
             }
         }
         searchNewsViewModel.newsModel.observe(viewLifecycleOwner, observer)
     }
+
+
+    private fun searchNews() {
+        fragmentSearchBinding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener,
+            View.OnFocusChangeListener {
+            override fun onQueryTextSubmit(p0: String?): Boolean { return false }
+
+            override fun onQueryTextChange(p0: String?): Boolean {
+                val filteredList = articles.filter { it.title!!.contains(p0!!, ignoreCase = true) }
+                latestNewsAdapter.updateList(filteredList)
+                return false
+            }
+
+            override fun onFocusChange(p0: View?, p1: Boolean) { }
+
+        })
+    }
+
+
 
 }
