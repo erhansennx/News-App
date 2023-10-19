@@ -1,5 +1,6 @@
 package com.app.newsapp.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,18 @@ class DetailsFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+        fragmentDetailsBinding.shareButton.setOnClickListener {
+            shareTheNews(selectedArticle.url!!)
+        }
+
     }
+
+    fun shareTheNews(url: String) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+        intent.putExtra(Intent.EXTRA_TEXT, url)
+        startActivity(Intent.createChooser(intent, "Paylaş"))
+    }
+
 
 }

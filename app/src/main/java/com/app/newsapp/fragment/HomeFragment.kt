@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.app.newsapp.R
 import com.app.newsapp.adapter.LatestNewsAdapter
 import com.app.newsapp.databinding.FragmentHomeBinding
@@ -16,6 +17,7 @@ import com.app.newsapp.model.Article
 import com.app.newsapp.model.LatestNews
 import com.app.newsapp.viewmodel.LatestNewsViewModel
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 
 
@@ -44,7 +46,7 @@ class HomeFragment : Fragment() {
                 fragmentHomeBinding.homeProgress.visibility = View.GONE
                 fragmentHomeBinding.homeLinear.visibility = View.VISIBLE
                 articles = news.articles.filter { it.urlToImage != null }
-                addImageSlider(articles)
+                implementImageSlider(articles)
                 latestNewsAdapter = LatestNewsAdapter(articles)
                 fragmentHomeBinding.latestNewsRecycler.adapter = latestNewsAdapter
             }
@@ -52,12 +54,21 @@ class HomeFragment : Fragment() {
         latestNewsViewModel.latestNews.observe(viewLifecycleOwner, observer)
     }
 
-    private fun addImageSlider(articles: List<Article>) {
+    private fun implementImageSlider(articles: List<Article>) {
         imageList.clear()
         for (index in 0 until 7) {
             imageList.add(SlideModel(articles[index].urlToImage, articles[index].title))
         }
         fragmentHomeBinding.imageSlider.setImageList(imageList, ScaleTypes.FIT)
+
+        fragmentHomeBinding.imageSlider.setItemClickListener(object : ItemClickListener{
+            override fun doubleClick(position: Int) { }
+
+            override fun onItemSelected(position: Int) {
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(articles[position])
+                Navigation.findNavController(requireView()).navigate(action)
+            }
+        })
     }
 
 
