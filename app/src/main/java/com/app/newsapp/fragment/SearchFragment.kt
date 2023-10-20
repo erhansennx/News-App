@@ -33,7 +33,7 @@ class SearchFragment : Fragment() {
         searchNewsViewModel = ViewModelProvider(this)[SearchNewsViewModel::class.java]
         searchNewsViewModel.getAllNews()
         observeAllNews()
-        searchNews()
+
         return fragmentSearchBinding.root
     }
 
@@ -49,7 +49,7 @@ class SearchFragment : Fragment() {
                     Navigation.findNavController(requireView()).navigate(action)
                 })
                 fragmentSearchBinding.searchRecycler.adapter = latestNewsAdapter
-
+                searchNews()
             }
         }
         searchNewsViewModel.newsModel.observe(viewLifecycleOwner, observer)
