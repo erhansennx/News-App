@@ -6,4 +6,5 @@
     <color name="gray">#2C5E5E5E</color>
     <color name="transparent">#0D5E5E5E</color>
     <color name="searchView_bg">#F4F5FB</color>
+    <color name="dark_gray">#575757</color>
 </resources>

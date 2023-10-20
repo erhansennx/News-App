@@ -11,4 +11,5 @@
     <string name="world">• World</string>
     <string name="searchbar_hint">Search News</string>
     <string name="international_news">International News</string>
+    <string name="sorry_no_results_were_found_for_the_news_title_you_were_looking_for">Sorry, no results were found for the news title you were looking for.</string>
 </resources>

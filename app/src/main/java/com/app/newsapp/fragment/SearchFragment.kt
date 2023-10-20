@@ -23,6 +23,7 @@ import com.app.newsapp.viewmodel.SearchNewsViewModel
 class SearchFragment : Fragment() {
 
     private var articles: List<Article> = arrayListOf()
+    private var filteredList: List<Article> = arrayListOf()
     private lateinit var latestNewsAdapter: LatestNewsAdapter
     private lateinit var searchNewsViewModel: SearchNewsViewModel
     private lateinit var fragmentSearchBinding: FragmentSearchBinding
@@ -62,13 +63,17 @@ class SearchFragment : Fragment() {
             override fun onQueryTextSubmit(p0: String?): Boolean { return false }
 
             override fun onQueryTextChange(p0: String?): Boolean {
-                val filteredList = articles.filter { it.title!!.contains(p0!!, ignoreCase = true) }
+
+                filteredList = articles.filter { it.title!!.contains(p0!!, ignoreCase = true) }
                 latestNewsAdapter.updateList(filteredList)
+
+                if (filteredList.isNotEmpty()) fragmentSearchBinding.noResultView.visibility = View.GONE
+                else fragmentSearchBinding.noResultView.visibility = View.VISIBLE
+
                 return false
             }
 
             override fun onFocusChange(p0: View?, p1: Boolean) { }
-
         })
     }
 
