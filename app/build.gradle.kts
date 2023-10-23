@@ -71,6 +71,8 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
     implementation("androidx.core:core-ktx:1.9.0")
