@@ -5,17 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.app.newsapp.R
 import com.app.newsapp.databinding.FragmentDetailsBinding
 import com.app.newsapp.model.Article
+import com.app.newsapp.viewmodel.NewsDetailViewModel
 
 class DetailsFragment : Fragment() {
 
     private lateinit var selectedArticle: Article
+    private val newsDetailViewModel : NewsDetailViewModel by viewModels()
     private lateinit var fragmentDetailsBinding: FragmentDetailsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -37,17 +41,16 @@ class DetailsFragment : Fragment() {
         }
 
         fragmentDetailsBinding.shareButton.setOnClickListener {
-            shareTheNews(selectedArticle.url!!)
+            newsDetailViewModel.shareTheNewsUrl(requireContext(), selectedArticle.url!!)
+        }
+
+        fragmentDetailsBinding.saveButton.setOnClickListener {
+            newsDetailViewModel.saveInDatabase(selectedArticle)
         }
 
     }
 
-    fun shareTheNews(url: String) {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_TEXT, url)
-        startActivity(Intent.createChooser(intent, "Paylaş"))
-    }
+
 
 
 }

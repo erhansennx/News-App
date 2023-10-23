@@ -8,7 +8,7 @@ import com.app.newsapp.model.Article
 @Dao
 interface NewsDao {
     @Insert
-    suspend fun insertArticle(vararg article: Article)
+    suspend fun insertArticle(article: Article)
 
     @Query("SELECT * FROM article")
     suspend fun getAllArticles() : List<Article>
