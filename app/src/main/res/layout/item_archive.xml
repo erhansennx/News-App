@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="article"
+            type="com.app.newsapp.model.Article"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            app:cardCornerRadius="8dp">
+
+            <ImageView
+                android:id="@+id/newsImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray"
+                android:downloadImage="@{article.urlToImage}"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/newsTitle"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center|start"
+            android:hint="@string/news_title"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:fontFamily="@font/robotomedium"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="@{article.title}"
+            tools:ignore="NestedWeights" />
+
+    </LinearLayout>
+
+</layout>

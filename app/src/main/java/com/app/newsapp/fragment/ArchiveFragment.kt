@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.app.newsapp.R
+import com.app.newsapp.adapter.ArchiveAdapter
 import com.app.newsapp.databinding.FragmentArchiveBinding
 import com.app.newsapp.model.Article
 import com.app.newsapp.viewmodel.NewsDetailViewModel
@@ -16,6 +17,7 @@ import com.app.newsapp.viewmodel.NewsDetailViewModel
 
 class ArchiveFragment : Fragment() {
 
+    private lateinit var archiveAdapter: ArchiveAdapter
     private val newsDetailViewModel: NewsDetailViewModel by viewModels()
     private lateinit var fragmentArchiveBinding: FragmentArchiveBinding
 
@@ -32,9 +34,8 @@ class ArchiveFragment : Fragment() {
     private fun observeArchive() {
         val observerArticle = Observer<List<Article>> { articles ->
             if (articles.isNotEmpty()) {
-                for (i in articles) {
-                    println("Data: ${i.title}")
-                }
+                archiveAdapter = ArchiveAdapter(articles)
+                fragmentArchiveBinding.archiveRecycler.adapter = archiveAdapter
             }
         }
         newsDetailViewModel.articleLiveData.observe(viewLifecycleOwner, observerArticle)
