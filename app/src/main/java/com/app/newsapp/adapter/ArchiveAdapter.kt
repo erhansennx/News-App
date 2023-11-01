@@ -9,7 +9,7 @@ import com.app.newsapp.databinding.ItemArchiveBinding
 import com.app.newsapp.databinding.ItemNewsBinding
 import com.app.newsapp.model.Article
 
-class ArchiveAdapter(private var articles: List<Article>) : RecyclerView.Adapter<ArchiveAdapter.ItemHolder>() {
+class ArchiveAdapter(private var articles: List<Article>, private val onItemClick: (Article) -> Unit) : RecyclerView.Adapter<ArchiveAdapter.ItemHolder>() {
 
     class ItemHolder(var binding: ItemArchiveBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -25,6 +25,9 @@ class ArchiveAdapter(private var articles: List<Article>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.binding.article = articles[position]
+        holder.binding.archiveLinear.setOnClickListener {
+            onItemClick(articles[position])
+        }
     }
 
 

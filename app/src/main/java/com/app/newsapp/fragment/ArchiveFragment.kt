@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.app.newsapp.R
 import com.app.newsapp.adapter.ArchiveAdapter
 import com.app.newsapp.databinding.FragmentArchiveBinding
@@ -34,7 +35,10 @@ class ArchiveFragment : Fragment() {
     private fun observeArchive() {
         val observerArticle = Observer<List<Article>> { articles ->
             if (articles.isNotEmpty()) {
-                archiveAdapter = ArchiveAdapter(articles)
+                archiveAdapter = ArchiveAdapter(articles, onItemClick = {
+                    val action = ArchiveFragmentDirections.actionArchiveFragmentToDetailsFragment(it)
+                    Navigation.findNavController(requireView()).navigate(action)
+                })
                 fragmentArchiveBinding.archiveRecycler.adapter = archiveAdapter
             }
         }
