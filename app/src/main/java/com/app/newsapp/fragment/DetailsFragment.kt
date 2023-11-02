@@ -20,6 +20,7 @@ import com.app.newsapp.viewmodel.NewsDetailViewModel
 class DetailsFragment : Fragment() {
 
     private var isBookmarked = false
+    private var source: String? = null
     private lateinit var selectedArticle: Article
     private val newsDetailViewModel : NewsDetailViewModel by viewModels()
     private lateinit var fragmentDetailsBinding: FragmentDetailsBinding
@@ -29,7 +30,13 @@ class DetailsFragment : Fragment() {
 
         arguments?.let {
             selectedArticle = DetailsFragmentArgs.fromBundle(it).selectedArticle
+            source = DetailsFragmentArgs.fromBundle(it).source
             fragmentDetailsBinding.selectedNews = selectedArticle
+        }
+
+        if (source == "ArchiveFragment") {
+            isBookmarked = true
+            fragmentDetailsBinding.saveButton.background = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_bookmark_added_24)
         }
 
         return fragmentDetailsBinding.root

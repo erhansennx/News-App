@@ -43,6 +43,9 @@
         <argument
             android:name="selectedArticle"
             app:argType="com.app.newsapp.model.Article"/>
+        <argument
+            android:name="source"
+            app:argType="string"/>
     </fragment>
 
 </navigation>

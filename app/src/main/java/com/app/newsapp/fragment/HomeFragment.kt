@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
                 articles = news.articles.filter { it.urlToImage != null }
                 implementImageSlider(articles)
                 latestNewsAdapter = LatestNewsAdapter(articles, onItemClick = { article ->
-                    val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(article)
+                    val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(article, "HomeFragment")
                     Navigation.findNavController(requireView()).navigate(action)
                 })
                 fragmentHomeBinding.latestNewsRecycler.adapter = latestNewsAdapter
@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
             override fun doubleClick(position: Int) { }
 
             override fun onItemSelected(position: Int) {
-                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(articles[position])
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(articles[position], "HomeFragment")
                 Navigation.findNavController(requireView()).navigate(action)
             }
         })

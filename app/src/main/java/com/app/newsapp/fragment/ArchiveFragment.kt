@@ -36,7 +36,7 @@ class ArchiveFragment : Fragment() {
         val observerArticle = Observer<List<Article>> { articles ->
             if (articles.isNotEmpty()) {
                 archiveAdapter = ArchiveAdapter(articles, onItemClick = {
-                    val action = ArchiveFragmentDirections.actionArchiveFragmentToDetailsFragment(it)
+                    val action = ArchiveFragmentDirections.actionArchiveFragmentToDetailsFragment(it, "ArchiveFragment")
                     Navigation.findNavController(requireView()).navigate(action)
                 })
                 fragmentArchiveBinding.archiveRecycler.adapter = archiveAdapter

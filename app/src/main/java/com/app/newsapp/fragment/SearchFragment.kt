@@ -46,7 +46,7 @@ class SearchFragment : Fragment() {
                 fragmentSearchBinding.searchLinear.visibility = View.VISIBLE
                 articles = news.articles.filter { it.urlToImage != null }
                 latestNewsAdapter = LatestNewsAdapter(articles, onItemClick = { article ->
-                    val action = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(article)
+                    val action = SearchFragmentDirections.actionSearchFragmentToDetailsFragment(article, "SearchFragment")
                     Navigation.findNavController(requireView()).navigate(action)
                 })
                 fragmentSearchBinding.searchRecycler.adapter = latestNewsAdapter
