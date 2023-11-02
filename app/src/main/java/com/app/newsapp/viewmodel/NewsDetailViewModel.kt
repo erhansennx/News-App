@@ -27,6 +27,12 @@ class NewsDetailViewModel(application: Application) : BaseViewModel(application)
         }
     }
 
+    fun deleteFromDatabase(article: Article) {
+        launch {
+            newsDao.deleteArticle(article.title!!)
+        }
+    }
+
     fun getSavedNews() {
         launch {
             articleLiveData.value = newsDao.getAllArticles()

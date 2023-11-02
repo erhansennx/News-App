@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -18,6 +19,7 @@ import com.app.newsapp.viewmodel.NewsDetailViewModel
 
 class DetailsFragment : Fragment() {
 
+    private var isBookmarked = false
     private lateinit var selectedArticle: Article
     private val newsDetailViewModel : NewsDetailViewModel by viewModels()
     private lateinit var fragmentDetailsBinding: FragmentDetailsBinding
@@ -45,8 +47,17 @@ class DetailsFragment : Fragment() {
         }
 
         fragmentDetailsBinding.saveButton.setOnClickListener {
-            newsDetailViewModel.saveInDatabase(selectedArticle)
+            if (isBookmarked) {
+                it.background = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_bookmark_border_24)
+                newsDetailViewModel.deleteFromDatabase(selectedArticle)
+                isBookmarked = false
+            } else {
+                it.background = ContextCompat.getDrawable(requireContext(), R.drawable.baseline_bookmark_added_24)
+                newsDetailViewModel.saveInDatabase(selectedArticle)
+                isBookmarked = true
+            }
         }
+
 
     }
 

@@ -40,6 +40,8 @@ class ArchiveFragment : Fragment() {
                     Navigation.findNavController(requireView()).navigate(action)
                 })
                 fragmentArchiveBinding.archiveRecycler.adapter = archiveAdapter
+                fragmentArchiveBinding.archiveRecycler.visibility = View.VISIBLE
+                fragmentArchiveBinding.archiveProgress.visibility = View.GONE
             }
         }
         newsDetailViewModel.articleLiveData.observe(viewLifecycleOwner, observerArticle)
