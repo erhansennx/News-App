@@ -24,6 +24,16 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
 
+        <TextView
+            android:id="@+id/warningText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/archived_news_could_not_be_found"
+            android:layout_gravity="center"
+            android:textColor="@color/dark_gray"
+            android:visibility="gone"
+            android:fontFamily="@font/robotoregular"/>
+
     </FrameLayout>
 
 </layout>

@@ -15,4 +15,5 @@
     <string name="archive">Archive</string>
     <string name="search">Search</string>
     <string name="home">Home</string>
+    <string name="archived_news_could_not_be_found">Archived news could not be found!</string>
 </resources>

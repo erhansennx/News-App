@@ -33,18 +33,25 @@ class ArchiveFragment : Fragment() {
 
 
     private fun observeArchive() {
-        val observerArticle = Observer<List<Article>> { articles ->
-            if (articles.isNotEmpty()) {
-                archiveAdapter = ArchiveAdapter(articles, onItemClick = {
-                    val action = ArchiveFragmentDirections.actionArchiveFragmentToDetailsFragment(it, "ArchiveFragment")
-                    Navigation.findNavController(requireView()).navigate(action)
-                })
-                fragmentArchiveBinding.archiveRecycler.adapter = archiveAdapter
-                fragmentArchiveBinding.archiveRecycler.visibility = View.VISIBLE
-                fragmentArchiveBinding.archiveProgress.visibility = View.GONE
+        with(fragmentArchiveBinding) {
+            val observerArticle = Observer<List<Article>> { articles ->
+                if (articles.isNotEmpty()) {
+                    archiveAdapter = ArchiveAdapter(articles, onItemClick = {
+                        val action = ArchiveFragmentDirections.actionArchiveFragmentToDetailsFragment(it, "ArchiveFragment")
+                        Navigation.findNavController(requireView()).navigate(action)
+                    })
+                    archiveRecycler.adapter = archiveAdapter
+                    archiveRecycler.visibility = View.VISIBLE
+                    archiveProgress.visibility = View.GONE
+                    warningText.visibility = View.GONE
+                } else {
+                    archiveRecycler.visibility = View.GONE
+                    archiveProgress.visibility = View.GONE
+                    warningText.visibility = View.VISIBLE
+                }
             }
+            newsDetailViewModel.articleLiveData.observe(viewLifecycleOwner, observerArticle)
         }
-        newsDetailViewModel.articleLiveData.observe(viewLifecycleOwner, observerArticle)
     }
 
 
