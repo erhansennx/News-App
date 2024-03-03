@@ -1,5 +1,19 @@
-# News App
+# News-App
 
+News-App, kullanıcıların güncel haberlere kolayca erişebilmelerini sağlayan bir mobil uygulamadır. Bu uygulama, haber başlıklarını, içerik özetlerini ve resimleri göstererek kullanıcıların ilgilerini çeken haberleri keşfetmelerine olanak tanır.
+
+## Veri Kaynağı
+
+Bu uygulama, güncel haber verilerini [News API](https://newsapi.org/) adlı ücretsiz bir haber API'sinden alır. News API, çeşitli haber kaynaklarından toplanan güncel haberleri sağlayan bir platformdur. Uygulama, News API'yi kullanarak haber başlıklarını, içerik özetlerini ve resimlerini alır ve kullanıcılara sunar.
+
+## Özellikler
+
+- **Güncel Haberler:** Uygulama, güncel haber başlıklarını ve içerik özetlerini sunar.
+- **Kategorilere Göre Filtreleme:** Haberleri kategori bazında filtreleyerek kullanıcıların ilgilendikleri konulara odaklanmalarını sağlar.
+- **Favori Haberler:** Kullanıcılar, favori haberlerini işaretleyebilir ve daha sonra kolayca erişebilirler.
+- **Arama Özelliği:** Kullanıcılar, istedikleri haberleri anahtar kelimelerle arayabilirler.
+
+## Uygulama İçi Görseller
 
 <img src="https://github.com/erhansennx/News-App/assets/77855407/37547e4d-5f94-4dcd-a041-78db538d85e8" alt="1" width=250>
 <img src="https://github.com/erhansennx/News-App/assets/77855407/8d39e3ec-9a6c-41c7-86af-26ddf1af405e" alt="2" width=250>
